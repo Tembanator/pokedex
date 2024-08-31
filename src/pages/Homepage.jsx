@@ -54,7 +54,7 @@ function Homepage() {
 
     useEffect(function () {
         const fetchPokemons = async () => {
-            const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=49&limit=30')
+            const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=1&limit=30')
             const data = await res.json()
             setPokemons(() => [...data.results])
         }
