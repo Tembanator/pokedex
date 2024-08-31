@@ -1,5 +1,6 @@
 import pokemonColor from "../Helpers/pokemonColor";
 import Type from "./Type";
+import pokeball from "../icons/pokeball.svg"
 
 export default function ListItem({ pokemon, colors }) {
     const { id, name, sprites, types } = pokemon
@@ -8,7 +9,7 @@ export default function ListItem({ pokemon, colors }) {
 
     return (
         <div
-            className={`w-full bg-${bgColor[0].color} rounded p-3 relative aspect-video bg-opacity-65 hover:scale-105 duration-300`}>
+            className={`w-full bg-${bgColor[0].color} rounded p-3 relative aspect-video hover:scale-105 duration-300`}>
             <img
                 className="w-[100px] h-[100px] mx-auto -mt-[50px]"
                 src={sprites.front_default}
@@ -16,7 +17,7 @@ export default function ListItem({ pokemon, colors }) {
             <div
                 className="flex flex-col space-y-2 relative -mt-5 overflow-hidden">
                 <img
-                    src="./icons/pokeball.svg" className="opacity-5 absolute w-[120px] -left-8 -bottom-10"
+                    src={pokeball} className="opacity-5 absolute w-[120px] -left-8 -bottom-10"
                     alt="" />
                 <h3
                     className="text-white font-semibold capitalize">

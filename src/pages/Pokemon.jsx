@@ -48,7 +48,7 @@ export default function Pokemon() {
         <>
             {isError && <p>{error}</p>}
             {isLoading && <FullLoader />}
-            <div className={`bg-${bgColor[0].color} w-full min-h-screen bg-opacity-65`}>
+            <div className={`bg-${bgColor[0].color} w-full min-h-screen`}>
                 <div className='mx-auto max-w-[500px] p-4'>
                     <div className='flex space-x-5 items-center text-white justify-center capitalize'>
                         <Link to={'/'}><IoArrowBack /></Link>

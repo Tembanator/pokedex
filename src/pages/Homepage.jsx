@@ -27,7 +27,7 @@ function Homepage({ offSet, limit }) {
 
     const handleSearch = (query) => {
         setFilter('all')
-        if (query.length < 3) {
+        if (query.length < 1) {
             setfilteredPokemons(() => [...pokemonsDetails])
         }
         else {
