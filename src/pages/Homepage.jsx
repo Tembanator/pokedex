@@ -5,12 +5,17 @@ import Logo from "../components/Logo"
 import Search from "../components/Search"
 import Sort from "../components/Sort"
 import hasType from "../Helpers/hasType"
+import FullLoader from "../components/FullLoader"
 
-function Homepage() {
+function Homepage({ offSet, limit }) {
     const [pokemons, setPokemons] = useState([])
     const [pokemonsDetails, setPokemonsDeatailes] = useState([])
     const [filteredPokemons, setfilteredPokemons] = useState([])
     const [filter, setFilter] = useState('all')
+    const [isLoading, setIsLoading] = useState(false)
+    const [isError, setIsError] = useState(false)
+    const [error, setError] = useState(null)
+
 
     const handleFilter = (match) => {
         if (match === 'all') {
@@ -54,19 +59,44 @@ function Homepage() {
 
     useEffect(function () {
         const fetchPokemons = async () => {
-            const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=1&limit=30')
-            const data = await res.json()
-            setPokemons(() => [...data.results])
+            try {
+                setIsLoading(true)
+                setIsError(false)
+                const res = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offSet}&limit=${limit}`)
+                if (!res.ok) {
+                    throw Error('Could not fetch Pokemons')
+                }
+                const data = await res.json()
+                setPokemons(() => [...data.results])
+                setIsLoading(false)
+                // document.title = data.name
+            } catch (error) {
+                setIsError(true)
+                setIsLoading(false)
+                setError(error.message)
+            }
         }
         fetchPokemons()
-    }, [])
+    }, [limit, offSet])
 
     useEffect(function () {
         const fetchPokemonDetails = async (name) => {
-            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-            const data = await res.json()
-            setPokemonsDeatailes((prev) => [...prev, data])
-            setfilteredPokemons((prev) => [...prev, data])
+            try {
+                setIsLoading(true)
+                setIsError(false)
+                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+                if (!res.ok) {
+                    throw Error('Could not fetch Pokemons')
+                }
+                const data = await res.json()
+                setPokemonsDeatailes((prev) => [...prev, data])
+                setfilteredPokemons((prev) => [...prev, data])
+                setIsLoading(false)
+            } catch (error) {
+                setIsError(true)
+                setIsLoading(false)
+                setError(error.message)
+            }
         }
         if (pokemons.length) {
             pokemons.map(pokemon => fetchPokemonDetails(pokemon.name))
@@ -81,6 +111,8 @@ function Homepage() {
                 <Sort onSort={handleSort} />
                 <Filter uniqueTypes={uniqueTypes} onFilter={handleFilter} filter={filter} setFilter={setFilter} />
             </div>
+            {isLoading && <FullLoader />}
+            {isError && <p>{error}</p>}
             <List filteredPokemons={filteredPokemons} />
         </>
     )

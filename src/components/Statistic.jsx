@@ -52,8 +52,8 @@ export default function Statistic({ statValue, color }) {
             <p className={`font-semibold text-${color} w-[60px]`}>{createStatShort(stat.name)}</p>
             <p className='w-[60px]'>0{base_stat}</p>
             <div className='relative w-full'>
-                <div className='h-[6px] w-full bg-gray-200 rounded absolute'></div>
-                <div style={{ width: widthStat + '%' }} className={`h-[6px] bg-${color} rounded absolute`}></div>
+                <div className='h-[6px] w-full bg-gray-200 rounded absolute z-30'></div>
+                <div style={{ width: widthStat + '%' }} className={`h-[6px] bg-${color} rounded absolute z-40`}></div>
             </div>
         </div>
     )
