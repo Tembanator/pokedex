@@ -51,9 +51,9 @@ export default function Statistic({ statValue, color }) {
         <div className='flex space-x-3 w-full items-center'>
             <p className={`font-semibold text-${color} w-[60px]`}>{createStatShort(stat.name)}</p>
             <p className='w-[60px]'>0{base_stat}</p>
-            <div className='relative w-full'>
-                <div className='h-[6px] w-full bg-gray-200 rounded absolute z-30'></div>
-                <div style={{ width: widthStat + '%' }} className={`h-[6px] bg-${color} rounded absolute z-40`}></div>
+            <div className='relative w-full z-0'>
+                <div className='h-[6px] w-full bg-gray-200 rounded absolute z-10'></div>
+                <div style={{ width: widthStat > 100 ? '100%' : widthStat + '%' }} className={`h-[6px] bg-${color} rounded absolute z-20`}></div>
             </div>
         </div>
     )
