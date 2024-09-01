@@ -23,7 +23,7 @@ export default function Search({ onSearch }) {
                     type="text"
                     name="search"
                     id="search"
-                    placeholder='Pokemon name or number' />
+                    placeholder='Pokemon name' />
                 {/* <button
                     className='absolute flex items-center right-[30px] rounded bg-orange-500 text-blue-600 px-6 top-[5px] font-semibold text-sm'
                     type="submit">
